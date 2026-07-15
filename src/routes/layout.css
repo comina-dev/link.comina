@@ -1,3 +1,32 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+
+
+/*s: root*/
+:root {
+	--main-bg-color: #e2e2e2;
+	--main-accent-color: #383838;
+	--sub-accent-color: #424242;
+	--main-text-color: #000;
+	--sub-text-color: #ffffff;
+	--emphasis-text-color: #e2e2e2;
+	--small-text-color: #a7a7a7;
+}
+/*e: root*/
+
+body {
+	font-family: 'Noto Sans JP', sans-serif;
+	background-color: var(--main-bg-color);
+}
+
+.m-hr{
+    margin-top: 12px; margin-bottom: 12px;
+    color: var(--small-text-color);
+}
+
+.main-grid{
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
