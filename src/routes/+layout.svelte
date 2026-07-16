@@ -5,7 +5,9 @@
 	let { children, data } = $props();
 
 	//uiテスト用ダミー
-	let publicPageUrl = '/dummy_profile/'; 
+	let publicPageUrl = '/dummy_profile/';
+	let accountDisplayName = 'テスト';
+	let accountAvatarUrl = 'https://pic.atserver186.jp/img/atserver/test/-444zh0.jpg';
 </script>
 
 <svelte:head
@@ -63,6 +65,19 @@
 					>
 				</li>
 			</ul>
+			<div class="mt-auto">
+				<!--s: account-info-->
+				<button type="button" class="cursor-pointer w-full hover:bg-(--small-text-color) transition rounded-xl p-1">
+					<div class="flex account-info">
+						<div class="account-info_avatar">
+							<img src={accountAvatarUrl} alt="{accountDisplayName}のアイコン" class="h-10 rounded-full" />
+						</div>
+						<div class="my-auto ml-2 account-info_name">{accountDisplayName}</div>
+						<i class="fa-solid fa-chevron-right my-auto ml-auto"></i>
+					</div>
+				</button>
+				<!--e: account-info-->
+			</div>
 		</aside>
 		<div class="main-content-area">
 			{@render children()}
