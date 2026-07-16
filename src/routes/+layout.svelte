@@ -3,6 +3,9 @@
 	import favicon from '$lib/assets/favicon.svg';
 
 	let { children, data } = $props();
+
+	//uiテスト用ダミー
+	let publicPageUrl = '/dummy_profile/'; 
 </script>
 
 <svelte:head
@@ -28,6 +31,38 @@
 					<p class="text-(--main-text-color) m-auto ml-2 font-bold">Comina Link</p></a
 				>
 			</div>
+			<ul>
+				<hr class="m-hr" />
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
+					<a href="/app/profile"
+						><i class="fa-solid fa-circle-user mr-1 text-bace"></i>プロフィール編集</a
+					>
+				</li>
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
+					<a href="/app/links"><i class="fa-solid fa-link mr-1 text-bace"></i>リンク設定</a>
+				</li>
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
+					<a href="/app/posts"><i class="fa-solid fa-circle-plus mr-1 text-bace"></i>投稿管理</a>
+				</li>
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
+					<a href="/app/design"><i class="fa-solid fa-pen-fancy mr-1 text-bace"></i>デザイン設定</a>
+				</li>
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
+					<a href={publicPageUrl}
+						><i class="fa-solid fa-square-arrow-up-right mr-1 text-bace"></i>あなたの公開ページ</a
+					>
+				</li>
+			</ul>
 		</aside>
 		<div class="main-content-area">
 			{@render children()}
