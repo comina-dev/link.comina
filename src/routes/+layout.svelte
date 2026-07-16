@@ -38,6 +38,13 @@
 				<li
 					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
 				>
+					<a href="/app/home"
+						><i class="fa-solid fa-house mr-1 text-bace"></i>ホーム</a
+					>
+				</li>
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
 					<a href="/app/profile"
 						><i class="fa-solid fa-circle-user mr-1 text-bace"></i>プロフィール編集</a
 					>
