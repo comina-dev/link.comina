@@ -5,7 +5,7 @@
 	let { children, data } = $props();
 
 	/*s: モーダル*/
-	import MainModal from '$lib/components/MainModal.svelte';
+	import MainModal from '$lib/components/ui/MainModal.svelte';
 	let showMainModal = $state(false);
 	let modalType = $state('');
 
@@ -34,8 +34,30 @@
 		<h2 class="mb-4 text-center text-2xl font-bace text-(--main-text-color)">
 			<i class="fa-solid fa-circle-info mr-2"></i>アカウント情報
 		</h2>
-		<hr class="main-hr" />
-		<p class="leading-[1.8rem]">text</p>
+		<hr class="m-hr" />
+		<div class="flex">
+			<div>
+				<img
+					src={accountAvatarUrl}
+					alt="{accountDisplayName}のアイコン"
+					class="h-10 rounded-full"
+				/>
+			</div>
+			<div class="my-auto ml-2">{accountDisplayName}</div>
+		</div>
+		<div class="flex flex-col">
+			<a href="/app/settings"
+				><i class="fa-solid fa-circle-user mr-1 text-bace"></i>プロフィール編集</a
+			>
+			<a href="/app/help"
+				><i class="fa-regular fa-circle-question mr-1 text-bace"></i>ヘルプセンター</a
+			>
+			<a href="/app/settings"><i class="fa-regular fa-message mr-1 text-bace"></i>フィードバック</a>
+			<hr class="m-hr" />
+			<a href="/app/settings"
+				><i class="fa-solid fa-arrow-right-from-bracket mr-1 text-bace"></i>ログアウト</a
+			>
+		</div>
 		<!--e: account_info-->
 		<!---->
 		<!--s: test-->
@@ -75,13 +97,6 @@
 				<li
 					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
 				>
-					<a href="/app/profile"
-						><i class="fa-solid fa-circle-user mr-1 text-bace"></i>プロフィール編集</a
-					>
-				</li>
-				<li
-					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
-				>
 					<a href="/app/links"><i class="fa-solid fa-link mr-1 text-bace"></i>リンク設定</a>
 				</li>
 				<li
@@ -93,6 +108,13 @@
 					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
 				>
 					<a href="/app/design"><i class="fa-solid fa-pen-fancy mr-1 text-bace"></i>デザイン設定</a>
+				</li>
+				<li
+					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
+				>
+					<a href="/app/media"
+						><i class="fa-solid fa-pen-fancy mr-1 text-bace"></i>メディアライブラリ</a
+					>
 				</li>
 				<li
 					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
@@ -109,15 +131,15 @@
 					onclick={() => openModal('account_info')}
 					class="cursor-pointer w-full hover:bg-(--small-text-color) transition rounded-xl p-1"
 				>
-					<div class="flex account-info">
-						<div class="account-info_avatar">
+					<div class="flex">
+						<div>
 							<img
 								src={accountAvatarUrl}
 								alt="{accountDisplayName}のアイコン"
 								class="h-10 rounded-full"
 							/>
 						</div>
-						<div class="my-auto ml-2 account-info_name">{accountDisplayName}</div>
+						<div class="my-auto ml-2">{accountDisplayName}</div>
 						<i class="fa-solid fa-chevron-right my-auto ml-auto"></i>
 					</div>
 				</button>
