@@ -4,18 +4,50 @@
 
 	let { children, data } = $props();
 
+	/*s: モーダル*/
+	import MainModal from '$lib/components/MainModal.svelte';
+	let showMainModal = $state(false);
+	let modalType = $state('');
+
+	function openModal(type: string) {
+		showMainModal = true;
+		modalType = type;
+	}
+	/*e:モーダル*/
+
 	//uiテスト用ダミー
 	let publicPageUrl = '/dummy_profile/';
 	let accountDisplayName = 'テスト';
 	let accountAvatarUrl = 'https://pic.atserver186.jp/img/atserver/test/-444zh0.jpg';
 </script>
 
-<svelte:head
-	><link rel="stylesheet" href="https://cdn.atserver186.jp/libs/fontawesome/css/all.min.css" /><link
+<svelte:head>
+	<link rel="stylesheet" href="https://cdn.atserver186.jp/libs/fontawesome/css/all.min.css" /><link
 		rel="icon"
 		href={favicon}
-	/></svelte:head
->
+	/>
+</svelte:head>
+
+<MainModal bind:showMainModal>
+	<!--s: account_info-->
+	{#if modalType === 'account_info'}
+		<h2 class="mb-4 text-center text-2xl font-bace text-(--main-text-color)">
+			<i class="fa-solid fa-circle-info mr-2"></i>アカウント情報
+		</h2>
+		<hr class="main-hr" />
+		<p class="leading-[1.8rem]">text</p>
+		<!--e: account_info-->
+		<!---->
+		<!--s: test-->
+	{:else if modalType === 'test'}
+		<p class="mb-4 text-center text-2xl font-bold text-(--main-text-color)">
+			<i class="fa-solid fa-money-check-dollar mr-2"></i>お支払いについて
+		</p>
+		<hr class="main-hr" />
+		<p class="leading-[1.8rem]">test</p>
+		<!--e: test-->
+	{/if}
+</MainModal>
 
 <main class="min-h-screen">
 	<div class="main-grid">
@@ -38,9 +70,7 @@
 				<li
 					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
 				>
-					<a href="/app/home"
-						><i class="fa-solid fa-house mr-1 text-bace"></i>ホーム</a
-					>
+					<a href="/app/home"><i class="fa-solid fa-house mr-1 text-bace"></i>ホーム</a>
 				</li>
 				<li
 					class="hover:bg-(--small-text-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
@@ -74,10 +104,18 @@
 			</ul>
 			<div class="mt-auto">
 				<!--s: account-info-->
-				<button type="button" class="cursor-pointer w-full hover:bg-(--small-text-color) transition rounded-xl p-1">
+				<button
+					type="button"
+					onclick={() => openModal('account_info')}
+					class="cursor-pointer w-full hover:bg-(--small-text-color) transition rounded-xl p-1"
+				>
 					<div class="flex account-info">
 						<div class="account-info_avatar">
-							<img src={accountAvatarUrl} alt="{accountDisplayName}のアイコン" class="h-10 rounded-full" />
+							<img
+								src={accountAvatarUrl}
+								alt="{accountDisplayName}のアイコン"
+								class="h-10 rounded-full"
+							/>
 						</div>
 						<div class="my-auto ml-2 account-info_name">{accountDisplayName}</div>
 						<i class="fa-solid fa-chevron-right my-auto ml-auto"></i>
