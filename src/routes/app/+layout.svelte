@@ -15,10 +15,8 @@
 	}
 	/*e:モーダル*/
 
-	//uiテスト用ダミー
+	//uiテスト用ダミー*/
 	let publicPageUrl = '/dummy_profile/';
-	let accountDisplayName = 'テスト';
-	let accountAvatarUrl = 'https://pic.atserver186.jp/img/atserver/test/-444zh0.jpg';
 </script>
 
 <svelte:head>
@@ -38,12 +36,12 @@
 		<div class="flex">
 			<div>
 				<img
-					src={accountAvatarUrl}
-					alt="{accountDisplayName}のアイコン"
+					src={data.accountAvatarUrl}
+					alt="{data.accountDisplayName}のアイコン"
 					class="h-10 rounded-full"
 				/>
 			</div>
-			<div class="my-auto ml-2">{accountDisplayName}</div>
+			<div class="my-auto ml-2">{data.accountDisplayName}</div>
 		</div>
 		<div class="flex flex-col">
 			<a href="/app/settings"
@@ -81,11 +79,11 @@
 				<div class="hover:bg-(--main-hover-color) transition p-1 rounded-xl cursor-pointer">
 					<a href="/app/home" class="flex shrink-0 whitespace-nowrap transition w-fit">
 						<img
-							src="https://cdn.atserver186.jp/img/material/ats-logo.webp"
+							src={data.serviceIconUrlShort}
 							alt="ATSERVER Logo"
 							class="h-10"
 						/>
-						<p class="text-(--main-text-color) m-auto ml-2 font-bold">Comina Link</p></a
+						<p class="text-(--main-text-color) m-auto ml-2 font-bold">{data.serviceName}</p></a
 					>
 				</div>
 				<ul>
@@ -138,12 +136,12 @@
 						<div class="flex">
 							<div>
 								<img
-									src={accountAvatarUrl}
-									alt="{accountDisplayName}のアイコン"
+									src={data.accountAvatarUrl}
+									alt="{data.accountDisplayName}のアイコン"
 									class="h-10 rounded-full"
 								/>
 							</div>
-							<div class="my-auto ml-2">{accountDisplayName}</div>
+							<div class="my-auto ml-2">{data.accountDisplayName}</div>
 							<i class="fa-solid fa-chevron-right my-auto ml-auto"></i>
 						</div>
 					</button>
