@@ -5,21 +5,21 @@
 </script>
 
 <svelte:head>
-	<title>test</title>
-	<meta property="og:title" content="test" />
+	<title>{data.accountDisplayName} | {data.serviceName}</title>
+	<meta property="og:title" content="{data.accountDisplayName} | {data.serviceName}" />
 </svelte:head>
 
-<div class="main-content">
-	<div class="profile-section">
+<main class="main-content">
+	<section class="profile-section">
 		<div class="profile-title">
 			<img
-				src="https://pic.atserver186.jp/img/atserver/header_logo.webp"
-				alt="ATSLink"
+				src="{data.serviceIconUrlLong}"
+				alt="{data.serviceName}"
 				style="width:100px;max-width:90vw;height:auto;margin-bottom:8px;"
 			/>
 		</div>
-		<img class="profile-avatar" src="https://cdn.atserver186.jp/img/material/ats-logo.webp" alt="アイコン" />
-		<div class="profile-username">displayName</div>
+		<img class="profile-avatar" src="{data.accountAvatarUrl}" alt="{data.accountDisplayName}のアイコン" />
+		<div class="profile-username">{data.accountDisplayName}</div>
 		<div class="profile-bio">
 			bio
 		</div>
@@ -43,15 +43,15 @@
 						style="width:70px;max-width:90vw;height:auto;margin-bottom:8px;"
 					/></a
 				><a
-					href="https://link.atserver186.jp"
+					href="{data.serviceDomain}"
 					style="font-size:0.8rem;color:black;text-decoration:none;margin-bottom:4px;"
-					target="_blank">Created by serviceName</a
+					target="_blank">Created by {data.serviceName}</a
 				>
-				<p style="font-size:0.8rem;margin:0;">serviceDomain All Rights Reserved</p>
+				<p style="font-size:0.8rem;margin:0;">{data.serviceName}. All Rights Reserved</p>
 			</div>
 		</div>
-	</div>
-</div>
+	</section>
+</main>
 
 <style>
 	.main-content {
