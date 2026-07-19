@@ -1,42 +1,29 @@
-# sv
+# Comina Link - Frontend
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> リンク共有＋簡易投稿ができるサービス、Comina Linkのフロントエンドです。
 
-## Creating a project
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![SvelteKit](https://img.shields.io/badge/SvelteKit-2.x-FF3E00?logo=svelte)](https://kit.svelte.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 特徴
 
-```sh
-# create a new project
-npx sv create my-app
-```
+- リンク共有
+- 簡易的な記事投稿機能
+- ページデザインのカスタマイズ
 
-To recreate this project with the same configuration:
+## 設計思想/開発ルール
+[こちら](./docs/design.md)をご覧ください。
 
-```sh
-# recreate this project
-npx sv@0.16.3 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:node" mdsvex --install npm comina-link
-```
+## 開発環境のセットアップ
 
-## Developing
+```bash
+# リポジトリをクローン
+git clone https://github.com/comina-dev/link.comina.git
+cd link.comina
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# 依存関係をインストール
+npm i
 
-```sh
+# 開発サーバを起動
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
