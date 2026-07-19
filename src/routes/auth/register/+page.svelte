@@ -19,6 +19,7 @@
 	>
 		<i class="fa-solid fa-arrow-left"></i>
 	</a>
+    <h2 class="text-2xl my-auto">新規登録</h2>
 </div>
 <label class="mb-4">
 	<div class="mb-1 flex items-end justify-between">

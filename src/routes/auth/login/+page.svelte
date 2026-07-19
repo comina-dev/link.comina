@@ -20,11 +20,11 @@
 	>
 		<i class="fa-solid fa-arrow-left"></i>
 	</a>
+    <h2 class="text-2xl my-auto">ログイン</h2>
 </div>
 <label class="mb-4">
 	<div class="mb-1 flex items-end justify-between">
 		<span class="text-xl">メールアドレス</span>
-		<span class="text-lg font-normal text-gray-500">(例: &nbsp;hogehoge@example.com)</span>
 	</div>
 	<input type="text" class="w-full rounded-3xl outline-none appearance-none" />
 </label>
