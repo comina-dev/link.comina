@@ -6,7 +6,7 @@
 
 /*s: root*/
 :root {
-	--main-bg-color: #e2e2e2;
+	--main-bg-color: #fff;
 	--main-accent-color: #383838;
 	--sub-accent-color: #424242;
 	--main-text-color: #000;
@@ -14,6 +14,7 @@
 	--emphasis-text-color: #e2e2e2;
 	--small-text-color: #a7a7a7;
 	--main-hover-color: #f2f2f2;
+	--sub-hover-color: #c7c7c7;
 }
 /*e: root*/
 
