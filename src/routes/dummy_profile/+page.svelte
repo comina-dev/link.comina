@@ -11,14 +11,10 @@
 
 <main class="main-content">
 	<section class="profile-section">
-    <!--s: service-ad-->
-		<img
-			src={data.serviceIconUrlLong}
-			alt={data.serviceName}
-			style="width:100px;max-width:90vw;height:auto;margin-bottom:8px;"
-		/>
-        <!--e: service-ad-->
-        <!---->
+		<!--s: service-ad-->
+		<img src={data.serviceIconUrlLong} alt={data.serviceName} class="profile-top-service-logo" />
+		<!--e: service-ad-->
+		<!---->
 		<img
 			class="profile-avatar"
 			src={data.accountAvatarUrl}
@@ -62,21 +58,11 @@
 		<!--e: user-links-->
 		<!---->
 		<!--s: service-ad-->
-		<div
-			style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:24px;"
-		>
-			<a href="https://link.atserver186.jp" target="_blank"
-				><img
-					src="https://pic.atserver186.jp/img/atserver/header_logo.webp"
-					alt="ATSLink"
-					style="width:70px;max-width:90vw;height:auto;margin-bottom:8px;"
-				/></a
-			><a
-				href={data.serviceDomain}
-				style="font-size:0.8rem;color:black;text-decoration:none;margin-bottom:4px;"
-				target="_blank">Created by {data.serviceName}</a
-			>
-			<p style="font-size:0.8rem;margin:0;">{data.serviceName}. All Rights Reserved</p>
+		<div class="profile-bottom-service-ad">
+			<a href={data.serviceDomain} class="profile-bottom-service-ad__createdby" target="_blank">
+				Created by {data.serviceName}
+			</a>
+			<p class="profile-bottom-service-ad__copyright">{data.serviceName}. All Rights Reserved</p>
 		</div>
 		<!--e: service-ad-->
 	</section>
@@ -96,7 +82,7 @@
 		padding: 2rem 1rem;
 		max-width: 480px;
 		width: 100%;
-		margin-top: 32px;
+		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -180,6 +166,42 @@
 		.profile-section {
 			background-color: var(--main-bg-color);
 			box-shadow: none;
+			margin-top: 0rem;
 		}
 	}
+
+	/*s: サービス宣伝部分*/
+	.profile-top-service-logo {
+		width: 100px;
+		max-width: 90vw;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+
+	/*下部*/
+	.profile-bottom-service-ad {
+		display: flex;
+		flex-direction: column;
+		margin-top: 1rem;
+		text-align: center;
+	}
+
+	.profile-bottom-service-ad__createdby {
+		font-size: 0.8rem;
+		color: black;
+		text-decoration: none;
+		margin-bottom: 4px;
+	}
+
+	.profile-bottom-service-ad__copyright {
+		font-size: 0.8rem;
+		margin: 0;
+	}
+
+	@media (max-width: 768px) {
+		.profile-bottom-service-ad {
+			margin-top: auto;
+		}
+	}
+	/*e: サービス宣伝部分*/
 </style>
