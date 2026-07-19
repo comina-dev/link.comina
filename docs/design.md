@@ -37,13 +37,13 @@ src/
 |   |   ├── media/            # ユーザがアップロードしたコンテンツ(画像/動画)の管理
 |   |   ├── posts/            # 投稿管理
 |   |   ├── settings/         # ユーザアカウント情報の編集やログアウトなど
+|   │   ├── auth/                 # 認証関連ページ
+|   │   │   ├── login/
+|   │   │   │   └── +page.svelte  # ログインページ (/auth/login)
+|   │   │   └── register/
+│   |   │       └── +page.svelte  # 登録ページ (/auth/register)
 |   |   ├── +layout.svelte    # 管理ページ用共通部品
 |   |   └── +page.server.ts   # ユーザ公開内容管理ルートから内容管理ホームへのリダイレクト用
-│   ├── auth/                 # 認証関連ページ
-│   │   ├── login/
-│   │   │   └── +page.svelte  # ログインページ (/auth/login)
-│   │   └── register/
-│   │       └── +page.svelte  # 登録ページ (/auth/register)
 │   ├── [username]/           # ユーザーの公開ページ (動的ルーティング)
 │   │   └── +page.svelte      # /{username}
 │   └── api/                  # APIエンドポイント (バックエンドとして機能)
