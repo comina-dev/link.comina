@@ -27,8 +27,7 @@
 	style="border: 0.5px solid var(--small-text-color);"
 	><i class="fa-brands fa-google mr-1.5"></i>Googleで続ける</a
 >
-<hr class="m-hr" />
-<div class="flex gap-2 mx-auto">
+<div class="flex gap-2 mx-auto mt-4">
 	<a href="/app/help/terms" class="text-xs">利用規約</a>
 	<a href="/app/help/privacy" class="text-xs">プライバシーポリシー</a>
 	<a href="/app/help/cookie" class="text-xs">クッキーポリシー</a>
