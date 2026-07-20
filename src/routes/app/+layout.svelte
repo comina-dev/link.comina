@@ -76,7 +76,6 @@
 			<div class="app-mobile-header-bar">
 				<a href="/app/home" class="flex items-center gap-2">
 					<img src={data.serviceIconUrlShort} alt="ATSERVER Logo" class="h-8" />
-					<span class="font-bold text-(--main-text-color)">{data.serviceName}</span>
 				</a>
 				<button
 					type="button"
@@ -90,14 +89,14 @@
 			</div>
 			<aside class="app-sidebar min-h-screen bg-white">
 				<div class="flex flex-col h-full p-4">
-					<div class="hover:bg-(--main-hover-color) transition p-1 rounded-xl cursor-pointer">
+					<div class="hover:bg-(--main-hover-color) transition p-1 rounded-xl cursor-pointer hidden md:flex">
 						<a href="/app/home" class="flex shrink-0 whitespace-nowrap transition w-fit">
-							<img src={data.serviceIconUrlShort} alt="ATSERVER Logo" class="h-10" />
+							<img src={data.serviceIconUrlShort} alt="{data.serviceName}" class="h-10" />
 							<p class="text-(--main-text-color) m-auto ml-2 font-bold">{data.serviceName}</p></a
 						>
 					</div>
 					<ul>
-						<hr class="m-hr" />
+						<hr class="m-hr hidden md:block" />
 						<li
 							class="hover:bg-(--main-hover-color) transition p-1 rounded-xl cursor-pointer my-4 text-lg font-thin"
 						>
