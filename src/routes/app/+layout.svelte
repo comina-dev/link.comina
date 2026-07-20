@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 
 	let { children, data } = $props();
+	let isSidebarOpen = $state(false);
 
 	/*s: モーダル*/
 	import MainModal from '$lib/components/ui/MainModal.svelte';
@@ -70,19 +71,40 @@
 </MainModal>
 
 <main class="min-h-screen">
+	<header class="app-mobile-header">
+		<button
+			type="button"
+			class="app-sidebar-toggle"
+			aria-label="サイドバーを開く"
+			aria-expanded={isSidebarOpen}
+			onclick={() => (isSidebarOpen = true)}
+		>
+			<i class="fa-solid fa-bars"></i>
+		</button>
+		<a href="/app/home" class="flex items-center gap-2">
+			<img src={data.serviceIconUrlShort} alt="ATSERVER Logo" class="h-8" />
+			<span class="font-bold text-(--main-text-color)">{data.serviceName}</span>
+		</a>
+	</header>
+
+	{#if isSidebarOpen}
+		<button
+			type="button"
+			class="app-sidebar-backdrop"
+			aria-label="サイドバーを閉じる"
+			onclick={() => (isSidebarOpen = false)}
+		></button>
+	{/if}
 	<div class="main-grid">
 		<aside
-			class="min-h-screen bg-white p-4"
+			class:app-sidebar-open={isSidebarOpen}
+			class="app-sidebar min-h-screen bg-white p-4"
 			style="border-right: 0.5px solid var(--small-text-color);"
 		>
 			<div class="flex flex-col h-full">
 				<div class="hover:bg-(--main-hover-color) transition p-1 rounded-xl cursor-pointer">
 					<a href="/app/home" class="flex shrink-0 whitespace-nowrap transition w-fit">
-						<img
-							src={data.serviceIconUrlShort}
-							alt="ATSERVER Logo"
-							class="h-10"
-						/>
+						<img src={data.serviceIconUrlShort} alt="ATSERVER Logo" class="h-10" />
 						<p class="text-(--main-text-color) m-auto ml-2 font-bold">{data.serviceName}</p></a
 					>
 				</div>
@@ -153,4 +175,11 @@
 			{@render children()}
 		</div>
 	</div>
+	<nav class="app-mobile-nav" aria-label="メインメニュー">
+		<a href="/app/home"><i class="fa-solid fa-house"></i><span>ホーム</span></a>
+		<a href="/app/links"><i class="fa-solid fa-link"></i><span>リンク</span></a>
+		<a href="/app/posts"><i class="fa-solid fa-circle-plus"></i><span>投稿</span></a>
+		<a href="/app/design"><i class="fa-solid fa-pen-fancy"></i><span>デザイン</span></a>
+		<a href="/app/media"><i class="fa-solid fa-images"></i><span>メディア</span></a>
+	</nav>
 </main>
