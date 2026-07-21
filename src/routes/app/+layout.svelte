@@ -37,7 +37,7 @@
 	import { navState } from '$lib/stores/navState.svelte.js';
 
 	const headerClass = $derived(
-		`sticky top-0 z-20 flex w-full flex-col overflow-hidden border border-black/10 bg-white/80 backdrop-blur-md transition-all duration-500` +
+		`absolute top-0 z-20 flex w-full flex-col overflow-hidden border border-black/10 bg-white/80 backdrop-blur-md transition-all duration-500` +
 			(scrolled ? ' scroll-nav' : '') +
 			(otherOpen
 				? ' max-h-[100vh] rounded-b-[1.0rem]'
@@ -186,174 +186,181 @@
 		</aside>
 		<div class="main-content-area">
 			{#if navState.visible}
-				<header class={headerClass}>
-					<div class="flex items-center justify-between px-2 py-2">
-						<!--s:ロゴ-->
-						<a href="/" class="flex shrink-0 whitespace-nowrap transition">
-							<img src={data.serviceIconUrlShort} alt="" class="h-10 w-auto rounded-xl" />
-						</a>
-						<!--e:ロゴ-->
-						<!---->
-						<div class="flex items-center md:hidden">
-							<!--s:スマホ用検索ボタン-->
-							<button
-								onclick={() => openModal('a')}
-								type="button"
-								title="検索する"
-								class="mr-4 cursor-pointer text-sm"
-								><i class="fa-solid fa-magnifying-glass"></i></button
-							>
-							<!--e:スマホ用検索ボタン-->
+				<div class="app-header-anchor">
+					<header class={headerClass}>
+						<div class="flex items-center justify-between px-2 py-2">
+							<!--s:ロゴ-->
+							<a href="/" class="flex shrink-0 whitespace-nowrap transition md:hidden">
+								<img src={data.serviceIconUrlShort} alt="" class="h-10 w-auto rounded-xl" />
+							</a>
+							<!--e:ロゴ-->
 							<!---->
-							<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
-							<div class="grid">
-								{#if !otherOpen}
-									<button
-										class="col-start-1 row-start-1 flex cursor-pointer flex-col gap-1.5"
-										transition:fade={{ duration: 300 }}
-										onclick={() => (open = !open)}
-										title="メニュー"
-									>
-										<div class="flex h-10 w-9 cursor-pointer flex-col items-center justify-center">
-											<input class="peer hidden" type="checkbox" checked={open} />
+							<div class="flex items-center md:hidden">
+								<!--s:スマホ用検索ボタン-->
+								<button
+									onclick={() => openModal('a')}
+									type="button"
+									title="検索する"
+									class="mr-4 cursor-pointer text-sm"
+									><i class="fa-solid fa-magnifying-glass"></i></button
+								>
+								<!--e:スマホ用検索ボタン-->
+								<!---->
+								<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
+								<div class="grid">
+									{#if !otherOpen}
+										<button
+											class="col-start-1 row-start-1 flex cursor-pointer flex-col gap-1.5"
+											transition:fade={{ duration: 300 }}
+											onclick={() => (open = !open)}
+											title="メニュー"
+										>
 											<div
-												class="header-hamburger h-0.5 w-[50%] origin-left translate-y-[0.45rem] rounded-sm bg-black transition-all duration-300 peer-checked:-rotate-45"
-											></div>
-											<div
-												class="header-hamburger h-0.5 w-[50%] origin-center rounded-md bg-black transition-all duration-300 peer-checked:hidden"
-											></div>
-											<div
-												class="header-hamburger h-0.5 w-[50%] origin-left -translate-y-[0.45rem] rounded-md bg-black transition-all duration-300 peer-checked:rotate-45"
-											></div>
-										</div>
-									</button>
-								{/if}
+												class="flex h-10 w-9 cursor-pointer flex-col items-center justify-center"
+											>
+												<input class="peer hidden" type="checkbox" checked={open} />
+												<div
+													class="header-hamburger h-0.5 w-[50%] origin-left translate-y-[0.45rem] rounded-sm bg-black transition-all duration-300 peer-checked:-rotate-45"
+												></div>
+												<div
+													class="header-hamburger h-0.5 w-[50%] origin-center rounded-md bg-black transition-all duration-300 peer-checked:hidden"
+												></div>
+												<div
+													class="header-hamburger h-0.5 w-[50%] origin-left translate-y-[-0.45rem] rounded-md bg-black transition-all duration-300 peer-checked:rotate-45"
+												></div>
+											</div>
+										</button>
+									{/if}
 
-								{#if otherOpen}
-									<button
-										class="col-start-1 row-start-1 flex cursor-pointer flex-col gap-1.5"
-										transition:fade={{ duration: 300 }}
-										onclick={() => closeOther(open)}
-										title="メニュー"
-									>
-										<div class="flex h-10 w-9 cursor-pointer flex-col items-center justify-center">
-											<i class="fa-solid fa-angle-left other-close-ico"></i>
-										</div>
-									</button>
-								{/if}
+									{#if otherOpen}
+										<button
+											class="col-start-1 row-start-1 flex cursor-pointer flex-col gap-1.5"
+											transition:fade={{ duration: 300 }}
+											onclick={() => closeOther(open)}
+											title="メニュー"
+										>
+											<div
+												class="flex h-10 w-9 cursor-pointer flex-col items-center justify-center"
+											>
+												<i class="fa-solid fa-angle-left other-close-ico"></i>
+											</div>
+										</button>
+									{/if}
+								</div>
+								<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
 							</div>
-							<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
+							<!---->
+							<!--s:PC用メニュー-->
+							<nav class="hidden md:flex">
+								<ul class="flex items-center gap-5 whitespace-nowrap transition">
+									<li>
+										<button
+											onclick={() => openModal('a')}
+											type="button"
+											class="header-text header-search-btn ml-3 text-xs tracking-wider transition"
+											><i class="fa-solid fa-magnifying-glass mr-1"></i><kbd>Ctrl&nbsp;K</kbd
+											></button
+										>
+									</li>
+									<li>
+										<a href="/service" class="header-text ml-3 text-xs tracking-wider transition"
+											>サービス</a
+										>
+									</li>
+									<li>
+										<a href="/software" class="header-text ml-3 text-xs tracking-wider transition"
+											>ソフトウェア</a
+										>
+									</li>
+									<li>
+										<a href="/contact" class="header-text ml-3 text-xs tracking-wider transition"
+											>お問い合わせ</a
+										>
+									</li>
+									<li class="mr-6">
+										<button
+											class="header-text ml-3 cursor-pointer text-xs tracking-wider transition"
+											onclick={() => (otherOpen = !otherOpen)}>その他</button
+										>
+									</li>
+								</ul>
+							</nav>
+							<!--e:PC用メニュー-->
 						</div>
-						<!---->
-						<!--s:PC用メニュー-->
-						<nav class="hidden md:flex">
-							<ul class="flex items-center gap-5 whitespace-nowrap transition">
-								<li>
-									<button
-										onclick={() => openModal('a')}
-										type="button"
-										class="header-text header-search-btn ml-3 text-xs tracking-wider transition"
-										><i class="fa-solid fa-magnifying-glass mr-1"></i><kbd>Ctrl&nbsp;K</kbd></button
-									>
-								</li>
-								<li>
-									<a href="/service" class="header-text ml-3 text-xs tracking-wider transition"
-										>サービス</a
-									>
-								</li>
-								<li>
-									<a href="/software" class="header-text ml-3 text-xs tracking-wider transition"
-										>ソフトウェア</a
-									>
-								</li>
-								<li>
-									<a href="/contact" class="header-text ml-3 text-xs tracking-wider transition"
-										>お問い合わせ</a
-									>
-								</li>
-								<li class="mr-6">
-									<button
-										class="header-text ml-3 cursor-pointer text-xs tracking-wider transition"
-										onclick={() => (otherOpen = !otherOpen)}>その他</button
-									>
-								</li>
-							</ul>
-						</nav>
-						<!--e:PC用メニュー-->
-					</div>
 
-					<!--スマホ用メニュー-->
-					{#if !otherOpen && !isOtherClosing}
-						<nav class="px-6 pt-6 pb-6 md:hidden">
-							<ul class="flex flex-col gap-4 text-sm tracking-wide">
-								<li><a href="/" class="header-text">ホーム</a></li>
-								<li><a href="/service" class="header-text">サービス</a></li>
-								<li><a href="/software" class="header-text">ソフトウェア</a></li>
-								<li><a href="/contact" class="header-text">お問い合わせ</a></li>
-								<li>
-									<button class="header-text" onclick={() => (otherOpen = !otherOpen)}
-										>その他</button
-									>
-								</li>
-							</ul>
-						</nav>
-					{/if}
+						<!--スマホ用メニュー-->
+						{#if !otherOpen && !isOtherClosing}
+							<nav class="px-6 pt-6 pb-6 md:hidden">
+								<ul class="flex flex-col gap-4 text-sm tracking-wide">
+									<li><a href="/" class="header-text">ホーム</a></li>
+									<li><a href="/service" class="header-text">サービス</a></li>
+									<li><a href="/software" class="header-text">ソフトウェア</a></li>
+									<li><a href="/contact" class="header-text">お問い合わせ</a></li>
+									<li>
+										<button class="header-text" onclick={() => (otherOpen = !otherOpen)}
+											>その他</button
+										>
+									</li>
+								</ul>
+							</nav>
+						{/if}
 
-					{#if otherOpen}
-						<nav
-							class="overflow-auto p-6"
-							transition:fade={{ duration: 500 }}
-							onoutrostart={() => (isOtherClosing = true)}
-							onoutroend={() => {
-								isOtherClosing = false;
-								if (pendingOpen) {
-									open = true;
-									pendingOpen = false;
-								}
-							}}
-						>
-							<ul class="flex flex-col gap-4 text-sm tracking-wide">
-								<li>
-									<a href="/news" class="header-text"
-										><i class="fa-regular fa-file-lines mr-1 text-xs"></i>ニュース</a
-									>
-								</li>
-								<li>
-									<a href="/site/oss" class="header-text"
-										><i class="fa-solid fa-rectangle-list mr-1 text-xs"></i>使用しているOSS</a
-									>
-								</li>
-								<li>
-									<a href="/site/saucecode" class="header-text"
-										><i class="fa-brands fa-github mr-1 text-xs"></i>ソースコード</a
-									>
-								</li>
-								<li>
-									<a href="/site/sitemap" class="header-text"
-										><i class="fa-solid fa-sitemap mr-1 text-xs"></i>サイトマップ</a
-									>
-								</li>
-								<li>
-									<a href="/site/links" class="header-text"
-										><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"></i>各種SNS /
-										リンク</a
-									>
-								</li>
-								<li>
-									<a href="/contact" class="header-text"
-										><i class="fa-solid fa-envelope mr-1 text-xs"></i>お問い合わせ</a
-									>
-								</li>
-								<hr class="main-hr" />
-								<button class="header-text" onclick={() => closeOther(open)}>
-									<i class="fa-solid fa-angle-left mr-1 text-xs"></i>
-									{#if open}メニューに戻る{/if}
-									{#if !open}閉じる{/if}
-								</button>
-							</ul>
-						</nav>
-					{/if}
-				</header>
+						{#if otherOpen}
+							<nav
+								class="overflow-auto p-6"
+								transition:fade={{ duration: 500 }}
+								onoutrostart={() => (isOtherClosing = true)}
+								onoutroend={() => {
+									isOtherClosing = false;
+									if (pendingOpen) {
+										open = true;
+										pendingOpen = false;
+									}
+								}}
+							>
+								<ul class="flex flex-col gap-4 text-sm tracking-wide">
+									<li>
+										<a href="/news" class="header-text"
+											><i class="fa-regular fa-file-lines mr-1 text-xs"></i>ニュース</a
+										>
+									</li>
+									<li>
+										<a href="/site/oss" class="header-text"
+											><i class="fa-solid fa-rectangle-list mr-1 text-xs"></i>使用しているOSS</a
+										>
+									</li>
+									<li>
+										<a href="/site/saucecode" class="header-text"
+											><i class="fa-brands fa-github mr-1 text-xs"></i>ソースコード</a
+										>
+									</li>
+									<li>
+										<a href="/site/sitemap" class="header-text"
+											><i class="fa-solid fa-sitemap mr-1 text-xs"></i>サイトマップ</a
+										>
+									</li>
+									<li>
+										<a href="/site/links" class="header-text"
+											><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"></i>各種SNS /
+											リンク</a
+										>
+									</li>
+									<li>
+										<a href="/contact" class="header-text"
+											><i class="fa-solid fa-envelope mr-1 text-xs"></i>お問い合わせ</a
+										>
+									</li>
+									<hr class="main-hr" />
+									<button class="header-text" onclick={() => closeOther(open)}>
+										<i class="fa-solid fa-angle-left mr-1 text-xs"></i>
+										{#if open}メニューに戻る{/if}
+										{#if !open}閉じる{/if}
+									</button>
+								</ul>
+							</nav>
+						{/if}
+					</header>
+				</div>
 			{/if}
 
 			{@render children()}
