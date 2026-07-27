@@ -198,12 +198,13 @@
 							<div class="flex items-center md:hidden">
 								<!--s:スマホ用検索ボタン-->
 								<button
-									onclick={() => openModal('a')}
+									onclick={() => openModal('account_info')}
 									type="button"
-									title="検索する"
-									class="mr-4 cursor-pointer text-sm"
-									><i class="fa-solid fa-magnifying-glass"></i></button
+									title="プロフィール情報"
+									class="mr-4 cursor-pointer text-bace"
 								>
+									<i class="fa-solid fa-circle-user"></i>
+								</button>
 								<!--e:スマホ用検索ボタン-->
 								<!---->
 								<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
