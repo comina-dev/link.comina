@@ -198,12 +198,13 @@
 							<div class="flex items-center md:hidden">
 								<!--s:スマホ用検索ボタン-->
 								<button
-									onclick={() => openModal('a')}
+									onclick={() => openModal('account_info')}
 									type="button"
-									title="検索する"
-									class="mr-4 cursor-pointer text-sm"
-									><i class="fa-solid fa-magnifying-glass"></i></button
+									title="プロフィール情報"
+									class="mr-4 cursor-pointer text-bace"
 								>
+									<i class="fa-solid fa-circle-user"></i>
+								</button>
 								<!--e:スマホ用検索ボタン-->
 								<!---->
 								<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
@@ -254,33 +255,8 @@
 							<nav class="hidden md:flex">
 								<ul class="flex items-center gap-5 whitespace-nowrap transition">
 									<li>
-										<button
-											onclick={() => openModal('a')}
-											type="button"
-											class="header-text header-search-btn ml-3 text-xs tracking-wider transition"
-											><i class="fa-solid fa-magnifying-glass mr-1"></i><kbd>Ctrl&nbsp;K</kbd
-											></button
-										>
-									</li>
-									<li>
-										<a href="/service" class="header-text ml-3 text-xs tracking-wider transition"
-											>サービス</a
-										>
-									</li>
-									<li>
-										<a href="/software" class="header-text ml-3 text-xs tracking-wider transition"
-											>ソフトウェア</a
-										>
-									</li>
-									<li>
-										<a href="/contact" class="header-text ml-3 text-xs tracking-wider transition"
-											>お問い合わせ</a
-										>
-									</li>
-									<li class="mr-6">
-										<button
-											class="header-text ml-3 cursor-pointer text-xs tracking-wider transition"
-											onclick={() => (otherOpen = !otherOpen)}>その他</button
+										<a href="/app/" class="header-text ml-3 text-xs tracking-wider transition"
+											>リンク</a
 										>
 									</li>
 								</ul>
@@ -292,70 +268,38 @@
 						{#if !otherOpen && !isOtherClosing}
 							<nav class="px-6 pt-6 pb-6 md:hidden">
 								<ul class="flex flex-col gap-4 text-sm tracking-wide">
-									<li><a href="/" class="header-text">ホーム</a></li>
-									<li><a href="/service" class="header-text">サービス</a></li>
-									<li><a href="/software" class="header-text">ソフトウェア</a></li>
-									<li><a href="/contact" class="header-text">お問い合わせ</a></li>
 									<li>
-										<button class="header-text" onclick={() => (otherOpen = !otherOpen)}
-											>その他</button
-										>
-									</li>
-								</ul>
-							</nav>
-						{/if}
-
-						{#if otherOpen}
-							<nav
-								class="overflow-auto p-6"
-								transition:fade={{ duration: 500 }}
-								onoutrostart={() => (isOtherClosing = true)}
-								onoutroend={() => {
-									isOtherClosing = false;
-									if (pendingOpen) {
-										open = true;
-										pendingOpen = false;
-									}
-								}}
-							>
-								<ul class="flex flex-col gap-4 text-sm tracking-wide">
-									<li>
-										<a href="/news" class="header-text"
-											><i class="fa-regular fa-file-lines mr-1 text-xs"></i>ニュース</a
+										<a href="/app/home" class="header-text"
+											><i class="fa-solid fa-house mr-1 text-bace"></i>ホーム</a
 										>
 									</li>
 									<li>
-										<a href="/site/oss" class="header-text"
-											><i class="fa-solid fa-rectangle-list mr-1 text-xs"></i>使用しているOSS</a
+										<a href="/app/links" class="header-text"
+											><i class="fa-solid fa-link mr-1 text-bace"></i>リンク設定</a
 										>
 									</li>
 									<li>
-										<a href="/site/saucecode" class="header-text"
-											><i class="fa-brands fa-github mr-1 text-xs"></i>ソースコード</a
+										<a href="/app/post" class="header-text"
+											><i class="fa-solid fa-circle-plus mr-1 text-bace"></i>投稿管理</a
 										>
 									</li>
 									<li>
-										<a href="/site/sitemap" class="header-text"
-											><i class="fa-solid fa-sitemap mr-1 text-xs"></i>サイトマップ</a
+										<a href="/app/media" class="header-text"
+											><i class="fa-solid fa-images mr-1 text-bace"></i>メディアライブラリ</a
 										>
 									</li>
 									<li>
-										<a href="/site/links" class="header-text"
-											><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"></i>各種SNS /
-											リンク</a
-										>
+										<a href="{publicPageUrl}" class="header-text flex">
+											<img src={data.accountAvatarUrl} alt="{data.accountDisplayName}のアイコン" class="h-5 rounded-4xl mr-1"/>
+											あなたの公開ページ
+										</a>
 									</li>
+									<hr class="m-hr" />
 									<li>
-										<a href="/contact" class="header-text"
-											><i class="fa-solid fa-envelope mr-1 text-xs"></i>お問い合わせ</a
+										<a href="/site/info" class="header-text"
+											><i class="fa-solid fa-images mr-1 text-bace"></i>システム情報</a
 										>
 									</li>
-									<hr class="main-hr" />
-									<button class="header-text" onclick={() => closeOther(open)}>
-										<i class="fa-solid fa-angle-left mr-1 text-xs"></i>
-										{#if open}メニューに戻る{/if}
-										{#if !open}閉じる{/if}
-									</button>
 								</ul>
 							</nav>
 						{/if}
