@@ -62,3 +62,13 @@ body {
 	z-index: 20;
 	height: 56px;
 }
+
+/* タイトル等 */
+.legacy-title {
+	font-size: 2.3rem;
+	font-weight: bold;
+	margin-bottom: 1.25rem;
+	text-align: center;
+	color: var(--main-text-color);
+	padding: 10px 0;
+}
