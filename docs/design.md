@@ -46,6 +46,9 @@ src/
 |   │   │   └── +page.svelte  # ログインページ (/auth/login)
 |   │   └── register/
 │   |       └── +page.svelte  # 登録ページ (/auth/register)
+│   ├── site/                 # サイト情報等のまとめページ
+|   │   └─── systeminfo/
+|   │       └── +page.svelte  # システム情報
 │   └── api/                  # APIエンドポイント (バックエンドとして機能)
 │       └── v1/               # APIバージョニング
 │           ├── auth/
