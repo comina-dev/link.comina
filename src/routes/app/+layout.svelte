@@ -279,7 +279,7 @@
 										>
 									</li>
 									<li>
-										<a href="/app/post" class="header-text"
+										<a href="/app/posts" class="header-text"
 											><i class="fa-solid fa-circle-plus mr-1 text-bace"></i>投稿管理</a
 										>
 									</li>
