@@ -33,6 +33,25 @@ body {
 	grid-template-columns: 1fr 5fr;
 }
 
+@media (max-width: 1400px) {
+	.main-grid{
+		grid-template-columns: 1.5fr 5fr;
+	}
+}
+
+@media (max-width: 1024px) {
+	.main-grid{
+		grid-template-columns: 2fr 5fr;
+	}
+}
+
+@media (max-width: 768px) {
+	.main-grid {
+		display: block;
+	}
+}
+
+
 .main-content-area {
 	min-width: 0;
 }
@@ -42,10 +61,4 @@ body {
 	top: 0;
 	z-index: 20;
 	height: 56px;
-}
-
-@media (max-width: 768px) {
-	.main-grid {
-		display: block;
-	}
 }
