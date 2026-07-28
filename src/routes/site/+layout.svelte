@@ -49,29 +49,6 @@
 		otherOpen = false;
 	}
 
-	//100pxスクロールでヘッダーの表示を変更
-	let scrolled = $state(false);
-
-	/*動的クラス*/
-	//ヘッダー
-	const headerClass = $derived(
-		`fixed top-0 right-0 left-0 z-20 border border-black/10 bg-white/80 backdrop-blur-md transition-all duration-500 overflow-hidden` +
-			(scrolled ? ' scroll-nav' : '') +
-			(otherOpen
-				? ' max-h-[100vh] rounded-b-[1.0rem]'
-				: open
-					? ' max-h-[400px] rounded-b-[1.0rem]'
-					: ' max-h-[56px]')
-	);
-
-	onMount(() => {
-		const handleScroll = () => {
-			scrolled = window.scrollY > 100;
-		};
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	});
-
 	/*s:モーダル*/
 	let showMainModal = $state(false);
 	let modalType = $state('');
@@ -121,6 +98,15 @@
 			}, 5000);
 		}
 	});
+
+	const headerClass = $derived(
+		`fixed top-4 left-1/2 -translate-x-1/2 w-[90%] z-20 border border-black/10 bg-white/80 backdrop-blur-md transition-all duration-500 rounded-4xl md:w-[60%]` +
+			(otherOpen
+				? ' max-h-[100vh] rounded-b-[1.0rem]'
+				: open
+					? ' max-h-[400px] rounded-b-[1.0rem]'
+					: ' max-h-[56px]')
+	);
 </script>
 
 <svelte:head>
@@ -129,18 +115,12 @@
 	<!--s:SEO-->
 	<!--各ページでheadに内容がなければ以下の内容が表示される-->
 	<title>ATSERVER</title>
-	<meta
-		name="description"
-		content="ATSERVERは様々なWebサービスを提供するサイトです。自作SNS・リンク共有サービス・掲示板・ブログ・その他ツールなどのWebサービスを展開しています。"
-	/>
-	<meta
-		name="keywords"
-		content="自宅鯖,自宅サーバー,Server,homeserver,ブログ,電子工作,dev,時計,リンク共有サービス,ATSLink,メモ帳,wiki,SNS,atserver,えーてぃーさーばー,ATS,ATSocial,Commina, 自作SNS, ATSERVER, 投稿, ミニゲーム, Webサービス"
-	/>
-	<meta property="og:site_name" content="ATSERVER" />
+	<meta name="description" content="Comina Linkの説明" />
+	<meta name="keywords" content="test,テスト" />
+	<meta property="og:site_name" content={data.serviceName} />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://atserver186.jp/ogp.png" />
-	<meta property="og:title" content="ATSERVER" />
+	<!--<meta property="og:image" content="https://atserver186.jp/ogp.png" />-->
+	<meta property="og:title" content={data.serviceName} />
 	<link rel="canonical" href={$page.url.href} />
 	<meta property="og:url" content={$page.url.href} />
 	<meta name="twitter:card" content="summary_large_image" />
@@ -174,12 +154,12 @@
 	<header class={headerClass}>
 		<div class="flex items-center justify-between px-2 py-2">
 			<!--s:ロゴ-->
-			<a href="/" class="flex shrink-0 whitespace-nowrap transition">
-				<img src={data.serviceIconUrlShort} alt="" class="h-10 w-auto rounded-xl" />
+			<a href="/site" class="flex shrink-0 whitespace-nowrap transition">
+				<img src={data.serviceIconUrlShort} alt="" class="h-10 w-auto rounded-4xl" />
 			</a>
 			<!--e:ロゴ-->
 			<!---->
-			<div class="flex items-center md:hidden">
+			<div class="flex md:hidden">
 				<!--s:スマホ用検索ボタン-->
 				<button
 					onclick={() => openModal('search')}
@@ -230,44 +210,35 @@
 			</div>
 			<!---->
 			<!--s:PC用メニュー-->
-			<nav class="hidden md:flex">
-				<ul class="flex items-center gap-5 whitespace-nowrap transition">
+			<nav class="hidden md:flex flex-1 ml-3">
+				<!-- ★ flex-1 を追加 -->
+				<ul class="flex items-center gap-5 whitespace-nowrap transition w-full">
+					<!-- w-full は維持 -->
 					<li>
-						<button
-							onclick={() => openModal('a')}
-							type="button"
-							class="header-text header-search-btn ml-3 text-xs tracking-wider transition"
-							><i class="fa-solid fa-magnifying-glass mr-1"></i><kbd>Ctrl&nbsp;K</kbd></button
-						>
+						<a href="/site" class="text-xs tracking-wider transition">ホーム</a>
 					</li>
 					<li>
-						<a href="/service" class="header-text ml-3 text-xs tracking-wider transition"
-							>サービス</a
-						>
+						<a href="/site/explore" class="text-xs tracking-wider transition">探索</a>
 					</li>
 					<li>
-						<a href="/software" class="header-text ml-3 text-xs tracking-wider transition"
-							>ソフトウェア</a
-						>
+						<a href="/site/help" class="text-xs tracking-wider transition">ヘルプ</a>
 					</li>
-					<li>
-						<a href="/contact" class="header-text ml-3 text-xs tracking-wider transition"
-							>お問い合わせ</a
-						>
+					<!--s: auth-->
+					<li class="ml-auto">
+						<!-- これで右端に寄ります -->
+						<a href="/site/help" class="text-xs tracking-wider transition">ログイン</a>
 					</li>
-					<li class="mr-6">
-						<button
-							class="header-text ml-3 cursor-pointer text-xs tracking-wider transition"
-							onclick={() => (otherOpen = !otherOpen)}>その他</button
-						>
+					<li class="bg-(--main-accent-color) rounded-4xl px-4 py-2">
+						<a href="/site/help" class="text-xs tracking-wider transition text-white">新規登録</a>
 					</li>
+					<!--e: auth-->
 				</ul>
 			</nav>
 			<!--e:PC用メニュー-->
 		</div>
 
 		<!--スマホ用メニュー-->
-		{#if !otherOpen && !isOtherClosing}
+		{#if open && !otherOpen && !isOtherClosing}
 			<nav class="px-6 pt-6 pb-6 md:hidden">
 				<ul class="flex flex-col gap-4 text-sm tracking-wide">
 					<li><a href="/" class="header-text">ホーム</a></li>
@@ -277,61 +248,6 @@
 					<li>
 						<button class="header-text" onclick={() => (otherOpen = !otherOpen)}>その他</button>
 					</li>
-				</ul>
-			</nav>
-		{/if}
-
-		{#if otherOpen}
-			<nav
-				class="overflow-auto p-6"
-				transition:fade={{ duration: 500 }}
-				onoutrostart={() => (isOtherClosing = true)}
-				onoutroend={() => {
-					isOtherClosing = false;
-					if (pendingOpen) {
-						open = true;
-						pendingOpen = false;
-					}
-				}}
-			>
-				<ul class="flex flex-col gap-4 text-sm tracking-wide">
-					<li>
-						<a href="/news" class="header-text"
-							><i class="fa-regular fa-file-lines mr-1 text-xs"></i>ニュース</a
-						>
-					</li>
-					<li>
-						<a href="/site/oss" class="header-text"
-							><i class="fa-solid fa-rectangle-list mr-1 text-xs"></i>使用しているOSS</a
-						>
-					</li>
-					<li>
-						<a
-							href="/site/saucecode"
-							class="header-text"><i class="fa-brands fa-github mr-1 text-xs"></i>ソースコード</a
-						>
-					</li>
-					<li>
-						<a href="/site/sitemap" class="header-text"
-							><i class="fa-solid fa-sitemap mr-1 text-xs"></i>サイトマップ</a
-						>
-					</li>
-					<li>
-						<a href="/site/links" class="header-text"
-							><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"></i>各種SNS / リンク</a
-						>
-					</li>
-					<li>
-						<a href="/contact" class="header-text"
-							><i class="fa-solid fa-envelope mr-1 text-xs"></i>お問い合わせ</a
-						>
-					</li>
-					<hr class="main-hr" />
-					<button class="header-text" onclick={() => closeOther(open)}>
-						<i class="fa-solid fa-angle-left mr-1 text-xs"></i>
-						{#if open}メニューに戻る{/if}
-						{#if !open}閉じる{/if}
-					</button>
 				</ul>
 			</nav>
 		{/if}
@@ -350,7 +266,11 @@
 					<div class="footer-flex-content">
 						<div class="footer-logo">
 							<a href="/">
-								<img src={data.serviceIconUrlShort} alt={data.serviceName} class="h-auto w-15 rounded-xl" />
+								<img
+									src={data.serviceIconUrlShort}
+									alt={data.serviceName}
+									class="h-auto w-15 rounded-xl"
+								/>
 							</a>
 						</div>
 					</div>
@@ -362,7 +282,12 @@
 							<li><a href="/service">webサービス</a></li>
 							<li><a href="/software">ソフトウェア</a></li>
 							<li><a href="/works/">関連サービス一覧</a></li>
-							<li><a href="https://dev.atserver186.jp" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square text-xs mr-1"></i>dev.atserver186.jp</a></li>
+							<li>
+								<a href="https://dev.atserver186.jp" target="_blank"
+									><i class="fa-solid fa-arrow-up-right-from-square text-xs mr-1"
+									></i>dev.atserver186.jp</a
+								>
+							</li>
 						</ul>
 					</div>
 					<div class="footer-flex-content">
@@ -441,7 +366,11 @@
 				<!--s:ロゴ・住所-->
 				<div class="flex flex-col items-center justify-center gap-4">
 					<a href="/">
-						<img src={data.serviceIconUrlShort} alt={data.serviceName} class="mt-4 h-auto w-20 rounded-xl" />
+						<img
+							src={data.serviceIconUrlShort}
+							alt={data.serviceName}
+							class="mt-4 h-auto w-20 rounded-xl"
+						/>
 					</a>
 				</div>
 				<!--s:ロゴ・住所-->
@@ -454,7 +383,12 @@
 							<li><a href="/service">webサービス</a></li>
 							<li><a href="/software">ソフトウェア</a></li>
 							<li><a href="/works/">関連サービス一覧</a></li>
-							<li><a href="https://dev.atserver186.jp" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square text-xs mr-1"></i>dev.atserver186.jp</a></li>
+							<li>
+								<a href="https://dev.atserver186.jp" target="_blank"
+									><i class="fa-solid fa-arrow-up-right-from-square text-xs mr-1"
+									></i>dev.atserver186.jp</a
+								>
+							</li>
 						</ul>
 					</details>
 					<details class="accordion-main mb-4 min-w-full">
