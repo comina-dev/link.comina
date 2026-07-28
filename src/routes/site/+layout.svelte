@@ -102,9 +102,9 @@
 	const headerClass = $derived(
 		`fixed top-4 left-1/2 -translate-x-1/2 w-[90%] z-20 border border-black/10 bg-white/80 backdrop-blur-md transition-all duration-500 rounded-4xl md:w-[60%]` +
 			(otherOpen
-				? ' max-h-[100vh] rounded-b-[1.0rem]'
+				? ' max-h-[100vh] rounded-b-4xl'
 				: open
-					? ' max-h-[400px] rounded-b-[1.0rem]'
+					? ' max-h-[400px] rounded-b-4xl'
 					: ' max-h-[56px]')
 	);
 </script>
@@ -154,8 +154,9 @@
 	<header class={headerClass}>
 		<div class="flex items-center justify-between px-2 py-2">
 			<!--s:ロゴ-->
-			<a href="/site" class="flex shrink-0 whitespace-nowrap transition">
+			<a href="/site" class="flex shrink-0 transition">
 				<img src={data.serviceIconUrlShort} alt="" class="h-10 w-auto rounded-4xl" />
+				<p class="header-text m-auto ml-2 font-bold">Comina Link</p>
 			</a>
 			<!--e:ロゴ-->
 			<!---->
@@ -192,19 +193,6 @@
 							</div>
 						</button>
 					{/if}
-
-					{#if otherOpen}
-						<button
-							class="col-start-1 row-start-1 flex cursor-pointer flex-col gap-1.5"
-							transition:fade={{ duration: 300 }}
-							onclick={() => closeOther(open)}
-							title="メニュー"
-						>
-							<div class="flex h-10 w-9 cursor-pointer flex-col items-center justify-center">
-								<i class="fa-solid fa-angle-left other-close-ico"></i>
-							</div>
-						</button>
-					{/if}
 				</div>
 				<!--s:スマホ用ハンバーガー / その他メニュー閉じる-->
 			</div>
@@ -226,10 +214,12 @@
 					<!--s: auth-->
 					<li class="ml-auto">
 						<!-- これで右端に寄ります -->
-						<a href="/site/help" class="text-xs tracking-wider transition">ログイン</a>
+						<a href="/auth/login" class="text-xs tracking-wider transition">ログイン</a>
 					</li>
 					<li class="bg-(--main-accent-color) rounded-4xl px-4 py-2">
-						<a href="/site/help" class="text-xs tracking-wider transition text-white">新規登録</a>
+						<a href="/auth/register" class="text-xs tracking-wider transition text-white"
+							>新規登録</a
+						>
 					</li>
 					<!--e: auth-->
 				</ul>
@@ -239,15 +229,12 @@
 
 		<!--スマホ用メニュー-->
 		{#if open && !otherOpen && !isOtherClosing}
-			<nav class="px-6 pt-6 pb-6 md:hidden">
+			<nav class="px-6 pt-6 pb-6 md:hidden" transition:fade={{ duration: 300 }}>
 				<ul class="flex flex-col gap-4 text-sm tracking-wide">
-					<li><a href="/" class="header-text">ホーム</a></li>
-					<li><a href="/service" class="header-text">サービス</a></li>
-					<li><a href="/software" class="header-text">ソフトウェア</a></li>
-					<li><a href="/contact" class="header-text">お問い合わせ</a></li>
-					<li>
-						<button class="header-text" onclick={() => (otherOpen = !otherOpen)}>その他</button>
-					</li>
+					<li><a href="/site" class="header-text">ホーム</a></li>
+					<li><a href="/site/explore" class="header-text">探索</a></li>
+					<li><a href="/site/help" class="header-text">ヘルプ</a></li>
+					<li><a href="/site/contact" class="header-text">お問い合わせ</a></li>
 				</ul>
 			</nav>
 		{/if}
