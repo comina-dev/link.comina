@@ -2,13 +2,12 @@
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	/*ローディング*/
-	/*import { isVisible, hasInitialized } from '$lib/stores/loader';*/
-	/*import Loading from '$lib/components/Loading.svelte';*/
+	/*ローディングアニメーション*/
+	import { isVisible, hasInitialized } from '$lib/stores/loadingAnime.js';
+	import Loading from '$lib/components/ui/LoadingAnime.svelte';
 	import { get } from 'svelte/store';
 	/*独自スタイル*/
-	import './layout.css';
-	import './icon.css';
+	import '../layout.css';
 	/*NProgress*/
 	import NProgress from 'nprogress';
 	import 'nprogress/nprogress.css';
@@ -38,11 +37,6 @@
 	//export
 	let { data, children } = $props();
 	let accordionOpen = $state(false);
-
-	//共通変数
-	let logo = 'https://pic.atserver186.jp/img/atserver/root/ats_logo.webp';
-	let logo_2 = 'https://pic.atserver186.jp/img/atserver/root/ats_logo.webp';
-	let logo_alt = 'ATSERVER-ロゴ画像';
 
 	//ハンバーガーメニュー
 	let open = $state(false);
@@ -79,11 +73,11 @@
 	});
 
 	/*s:モーダル*/
-	let showModal = $state(false);
+	let showMainModal = $state(false);
 	let modalType = $state('');
 
 	function openModal(type: string) {
-		showModal = true;
+		showMainModal = true;
 		modalType = type;
 	}
 	/*e:モーダル*/
@@ -154,8 +148,8 @@
 	<!--e:SEO-->
 </svelte:head>
 
-<Modal bind:showModal>
-	{#if modalType === 'a'}
+<Modal bind:showMainModal>
+	{#if modalType === 'test'}
 		<form class="s-search-form mb-4" action="/search/" method="GET">
 			<input
 				class="s-search-input"
@@ -181,16 +175,16 @@
 		<div class="flex items-center justify-between px-2 py-2">
 			<!--s:ロゴ-->
 			<a href="/" class="flex shrink-0 whitespace-nowrap transition">
-				<img src={logo} alt="" class="h-10 w-auto rounded-xl" />
+				<img src={data.serviceIconUrlShort} alt="" class="h-10 w-auto rounded-xl" />
 			</a>
 			<!--e:ロゴ-->
 			<!---->
 			<div class="flex items-center md:hidden">
 				<!--s:スマホ用検索ボタン-->
 				<button
-					onclick={() => openModal('a')}
+					onclick={() => openModal('search')}
 					type="button"
-					title="検索する"
+					title="ユーザまたはページを検索する"
 					class="mr-4 cursor-pointer text-sm"><i class="fa-solid fa-magnifying-glass"></i></button
 				>
 				<!--e:スマホ用検索ボタン-->
@@ -213,7 +207,7 @@
 									class="header-hamburger h-0.5 w-[50%] origin-center rounded-md bg-black transition-all duration-300 peer-checked:hidden"
 								></div>
 								<div
-									class="header-hamburger h-0.5 w-[50%] origin-left -translate-y-[0.45rem] rounded-md bg-black transition-all duration-300 peer-checked:rotate-45"
+									class="header-hamburger h-0.5 w-[50%] origin-left translate-y-[-0.45rem] rounded-md bg-black transition-all duration-300 peer-checked:rotate-45"
 								></div>
 							</div>
 						</button>
@@ -356,7 +350,7 @@
 					<div class="footer-flex-content">
 						<div class="footer-logo">
 							<a href="/">
-								<img src={logo_2} alt={logo_alt} class="h-auto w-15 rounded-xl" />
+								<img src={data.serviceIconUrlShort} alt={data.serviceName} class="h-auto w-15 rounded-xl" />
 							</a>
 						</div>
 					</div>
@@ -447,7 +441,7 @@
 				<!--s:ロゴ・住所-->
 				<div class="flex flex-col items-center justify-center gap-4">
 					<a href="/">
-						<img src={logo_2} alt={logo_alt} class="mt-4 h-auto w-20 rounded-xl" />
+						<img src={data.serviceIconUrlShort} alt={data.serviceName} class="mt-4 h-auto w-20 rounded-xl" />
 					</a>
 				</div>
 				<!--s:ロゴ・住所-->

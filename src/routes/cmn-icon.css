@@ -1,0 +1,17 @@
+/* アイコンのベーススタイル */
+.cmn-icon {
+  display: inline-block;
+  width: 1em;   /* 文字サイズに合わせる */
+  height: 1em;
+  background-color: currentColor; /* 文字色と同じ色にする */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  vertical-align: middle;
+}
+
+.icon-x-mark-thin{
+  -webkit-mask-image: url("https://cdn.atserver186.jp/img/tf26/material/x-mark-thin.svg");
+  mask-image: url("https://cdn.atserver186.jp/img/tf26/material/x-mark-thin.svg");
+}
