@@ -31,7 +31,7 @@
 				type="text"
 				id="searchTerm"
 				name="search"
-				placeholder="{data.serviceDomain}/あなたの名前"
+				placeholder="{data.serviceDomainDisp}/あなたの名前"
 			/>
 			<button class="flex justify-center items-center w-25 h-12 border-0 bg-amber-200 cursor-pointer" type="submit" title="検索する"
 				><i class="fas fa-search"></i></button
