@@ -41,6 +41,7 @@
 	},
 	"dependencies": {
 		"front-matter": "^4.0.2",
+		"marked": "^18.0.7",
 		"nprogress": "^0.2.0",
 		"swiper": "^14.0.6"
 	}

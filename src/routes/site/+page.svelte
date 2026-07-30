@@ -28,7 +28,7 @@
 				<ul>
 					{#each data?.latestNews ?? [] as post}
 						<li class="mx-auto mb-4 w-full list-none">
-							<a href="/news/{post.category}/{post.slug}">
+							<a href="/site/news/{post.category}/{post.slug}">
 								<div
 									class="news-list flex border-l-2 pl-4"
 									style="border-left-color: var(--main-text-color);"
