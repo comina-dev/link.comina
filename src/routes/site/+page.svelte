@@ -2,6 +2,9 @@
 	const { data } = $props();
 
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
+	import { reveal } from '$lib/reveal';
 </script>
 
 <svelte:head>
@@ -16,14 +19,14 @@
 		カルーセル(Swiper)とページ最下部の「登録して始める」の小さいものを配置。
 		-->
 	</section>
-	<section class="my-10 w-[80%] bg-gray-200 mx-auto rounded-3xl p-2">
-		<p>サービス紹介/qa</p>
+	<section class="sicon my-10 w-[80%] bg-gray-200 mx-auto p-2 transition-all">
+		<h2>サービス紹介など</h2>
+		<hr class="m-hr" />
 	</section>
-	<section class="my-10 w-[80%] bg-gray-200 mx-auto rounded-3xl p-2">
+	<section class="sicon my-10 bg-gray-200 mx-auto p-2 transition-all">
 		<h2>お知らせ</h2>
 		<div class="main-link">
 			<div class="link-3" style="margin: 0 5px 5px 5px; ">
-	
 				<hr class="main-hr mb-4" />
 				<ul>
 					{#each data?.latestNews ?? [] as post}
@@ -44,7 +47,6 @@
 									</div>
 									<div class="truncate-parent flex-col">
 										<p class="truncate-title news-list-title ml-2 font-bold">{post.title}</p>
-						
 									</div>
 									<div class="news-list-icon my-auto ml-auto">
 										<i class="fa-solid fa-angles-right left-auto mr-2"></i>
@@ -65,13 +67,13 @@
 		-->
 		</div>
 	</section>
-	<section class="my-10 w-full bg-gray-200 mx-auto p-2">
+	<section class="my-10 w-full bg-gray-200 mx-auto p-2 transition-all">
 		<p>登録ユーザ表示</p>
 		<p>横流し→/←</p>
 		<!--
 		-->
 	</section>
-	<section class="my-10 w-[80%] bg-gray-200 mx-auto rounded-3xl p-2">
+	<section class="sicon my-10 w-[80%] bg-gray-200 mx-auto rounded-3xl p-2 transition-all">
 		<p>登録して始める的なもの</p>
 		<form
 			class="flex justify-between items-center overflow-hidden rounded-4xl w-[70%] mx-auto"
@@ -99,3 +101,27 @@
 		-->
 	</section>
 </main>
+
+<style>
+	.sicon {
+		width: 55%;
+	}
+
+	@media (max-width: 1280px) {
+		.sicon {
+			width: 65%;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.sicon {
+			width: 85%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.sicon {
+			width: 95%;
+		}
+	}
+</style>
