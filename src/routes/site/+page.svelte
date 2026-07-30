@@ -20,10 +20,50 @@
 		<p>サービス紹介/qa</p>
 	</section>
 	<section class="my-10 w-[80%] bg-gray-200 mx-auto rounded-3xl p-2">
-		<p>お知らせ</p>
-		<!--
+		<h2>お知らせ</h2>
+		<div class="main-link">
+			<div class="link-3" style="margin: 0 5px 5px 5px; ">
+	
+				<hr class="main-hr mb-4" />
+				<ul>
+					{#each data?.latestNews ?? [] as post}
+						<li class="mx-auto mb-4 w-full list-none">
+							<a href="/news/{post.category}/{post.slug}">
+								<div
+									class="news-list flex border-l-2 pl-4"
+									style="border-left-color: var(--main-text-color);"
+								>
+									<div class="news-list-date-box mr-4">
+										<span class="news-list-month"
+											>{String(new Date(post.date).getMonth() + 1).padStart(2, '0')}</span
+										>
+										<span class="news-list-slash">/</span>
+										<span class="news-list-date"
+											>{String(new Date(post.date).getDate()).padStart(2, '0')}</span
+										>
+									</div>
+									<div class="truncate-parent flex-col">
+										<p class="truncate-title news-list-title ml-2 font-bold">{post.title}</p>
+						
+									</div>
+									<div class="news-list-icon my-auto ml-auto">
+										<i class="fa-solid fa-angles-right left-auto mr-2"></i>
+									</div>
+								</div>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+			<div class="link-4 flex items-center justify-center">
+				<i
+					class="tf26-icon-material icon-megaphone -scale-x-100 rotate-30 transform text-[12rem] text-(--main-text-color)"
+				></i>
+			</div>
+			<!--
 		atserver186.jpと同じ形で、markdownではなくdbで管理。
 		-->
+		</div>
 	</section>
 	<section class="my-10 w-full bg-gray-200 mx-auto p-2">
 		<p>登録ユーザ表示</p>
