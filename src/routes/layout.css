@@ -1,3 +1,252 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+/*s: root*/
+:root {
+	--main-bg-color: #fff;
+	--main-accent-color: #383838;
+	--sub-accent-color: #424242;
+	--main-text-color: #000;
+	--sub-text-color: #ffffff;
+	--emphasis-text-color: #e2e2e2;
+	--small-text-color: #a7a7a7;
+	--main-hover-color: #f2f2f2;
+	--sub-hover-color: #c7c7c7;
+}
+/*e: root*/
+
+body {
+	font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+	background-color: var(--main-bg-color);
+}
+
+.m-hr {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	color: var(--small-text-color);
+}
+
+.main-grid {
+	display: grid;
+	grid-template-columns: 1fr 5fr;
+}
+
+@media (max-width: 1400px) {
+	.main-grid{
+		grid-template-columns: 1.5fr 5fr;
+	}
+}
+
+@media (max-width: 1024px) {
+	.main-grid{
+		grid-template-columns: 2fr 5fr;
+	}
+}
+
+@media (max-width: 768px) {
+	.main-grid {
+		display: block;
+	}
+}
+
+
+.main-content-area {
+	min-width: 0;
+}
+
+.app-header-anchor {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	height: 56px;
+}
+
+/* タイトル等 */
+.legacy-title {
+	font-size: 2.3rem;
+	font-weight: bold;
+	margin-bottom: 1.25rem;
+	text-align: center;
+	color: var(--main-text-color);
+	padding: 10px 0;
+}
+
+/*== ニュース ==*/
+.news-section-title {
+	font-size: 1.8rem;
+	font-weight: 600;
+	text-align: left;
+	color: var(--main-text-color);
+	padding: 10px 0;
+}
+
+.news-megaphone {
+	color: color-mix(in srgb, var(--main-text-color), transparent 50%);
+}
+
+.news-list {
+	position: relative;
+}
+
+.news-list::after {
+	content: '';
+	position: absolute;
+	left: auto;
+	right: 0;
+	bottom: 0;
+	width: 0; /* 初期状態は幅0 */
+	height: 2px;
+	background: var(--main-text-color);
+	transition: width 0.3s;
+}
+
+.news-list:hover::after {
+	width: 98%;
+}
+
+.news-list-icon {
+	color: color-mix(in srgb, var(--hover-main-text-color), transparent 25%);
+}
+
+/* .news-listホバー時のアイコンアニメーション */
+.news-list:hover .fa-angles-right {
+	font-size: 1.2rem;
+	margin-right: 0;
+	color: var(--main-text-color);
+	transition:
+		font-size 0.3s,
+		margin-right 0.3s,
+		color 0.3s;
+}
+
+.news-list-date-box {
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 24px;
+	color: #666;
+	flex-shrink: 0;
+}
+
+.news-list-slash {
+	color: var(--main-text-color);
+	margin: 0 -8px;
+}
+
+.news-list-date {
+	display: inline-block;
+	vertical-align: sub;
+	font-size: 0.8em;
+}
+
+.news-list-month {
+	display: inline-block;
+	vertical-align: super;
+	font-size: 0.8em;
+}
+
+.news-list-title {
+	font-size: 1.25rem;
+}
+
+.news-list-heading {
+	font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+	.news-section-title {
+		font-size: 1.5rem;
+	}
+
+	.news-list-date,
+	.news-list-month {
+		font-size: 0.6em;
+	}
+
+	.news-list-title {
+		font-size: 1.125rem;
+	}
+
+	.news-list-heading {
+		font-size: 0.75rem;
+	}
+
+	.news-list:hover .fa-angles-right {
+		font-size: 1rem;
+	}
+}
+
+.guid-title-text {
+	font-size: 1.875rem;
+}
+
+@media (max-width: 768px) {
+	.guid-title-text {
+		font-size: 1.25rem;
+	}
+}
+
+
+/*footer*/
+.footer {
+	background-color: var(--main-text-color);
+	margin: 0;
+}
+
+.footer-top-content {
+	width: 100%;
+	margin: 20px auto;
+	padding: 20px;
+	border-radius: 10px;
+	display: flex;
+}
+
+.footer-bottom-content {
+	width: 100%;
+	padding: 20px;
+}
+
+.footer-flex-content {
+	width: calc(100% / 4);
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 15px;
+	border-radius: 8px;
+}
+
+.footer-flex-content a,
+.footer-span,
+.footer-link,
+.footer-text {
+	color: var(--sub-text-color);
+	font-size: 0.9rem;
+	gap: 10px;
+	text-decoration: none;
+	margin-top: 5px;
+}
+
+.footer-flex-content h4 {
+	color: var(--sub-text-color);
+	margin-bottom: 10px;
+	border-left: 3px solid var(--sub-text-color);
+	padding-left: 6px;
+	letter-spacing: 2px;
+}
+
+.footer-flex-content li {
+	list-style: none;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+	.footer-bottom-content {
+		padding: 2px;
+	}
+}
